@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>  
+        <script type="text/babel">
+            class GuGuDan extends React.Component {
+                state = {
+                    name: '김선휘',
+                    value: '',
+                    result: '',
+                };
+
+                onSubmit = (e) => {
+                    e.preventDefault();
+                    // 정답을 적으세요
+                    if(this.state.value === this.state.name) {
+                        this.setState({result: '정답'});                       
+                    } else {
+                        this.setState({result: '땡'}); 
+                    }
+                }
+
+                onChange = (e) => {
+                    this.setState({value: e.target.value});
+                };
+
+
+                render() {
+                    return (
+                        <React.Fragment>
+                            <div>스터디 팀장의 이름은?</div>    
+                            <form onSubmit={this.onSubmit}>
+                                <input type="string" value={this.state.value} onChange={this.onChange} />
+                                <button>입력!</button>
+                            </form>
+                            <div>{this.state.result}</div>
+                        </React.Fragment>
+                    );
+                }
+            }
+        </script>
+
+        <script type="text/babel">
+            ReactDOM.render(<GuGuDan />, document.querySelector('#root'));  //화면에다가 위에서 만든 것을 실제로 반영하겠다. 렌더링 하겠다.
+        </script>
+    </body>
+</html>
