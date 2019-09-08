@@ -1,0 +1,68 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+
+      //함수 컴포넌트, 함수에서도 state와 ref를 사용하게 해주었음 -> Hooks
+      // state가 변경될때마다 gugudan이 다시실행되기때문에 느릴 수 있다. 
+      // react는 태그안에 class를 사용할 수 없다 그래서 className을 사용한다.
+      // label에 For 속성 또한 label에서 htmlFor라고 사용한다.
+      const GuGuDan = () => {
+
+        // 항상 GuGuDan안에 들어와있어야한다.
+        const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+        // setFirst는 first 전용 setState이다.
+        const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+        const [value, setValue] = React.useState('');
+        const [result, setResult] = React.useState('');
+        const inputRef = React.useRef(null);
+
+        const onChangeInput = (e) => {
+          setValue(e.target.value);
+        };
+
+        const onSubmitForm = (e) => {
+          e.preventDefault();
+            if (parseInt(value) === first * second) {
+              setResult('정답: ' + value);
+              // 예전 상태를 사용하려면 함수형으로 써주면 된다.
+              // setResult((prevResult) =>{
+              //   return '정답: ' + value
+              // })
+              setFirst(Math.ceil(Math.random() * 9));
+              setSecond(Math.ceil(Math.random() * 9));
+              setValue('');
+              // setState들이 비동기라서 한번에 React에서 알아서 렌더링 해준다.
+              inputRef.current.focus();
+          } else {
+              setResult('떙');
+              setValue('');
+              inputRef.current.focus();
+            }
+        }
+
+        return <React.Fragment>
+          <div>{first} 곱하기 {second}는?</div>  
+          <form onSubmit={onSubmitForm}>
+            <input ref={inputRef} onChange={onChangeInput} value={value} />
+            <button>입력!</button>
+          </form>
+          <div id='result'>{result}</div>
+        </React.Fragment>
+      }
+          
+  </script>
+
+  <script type="text/babel">
+            ReactDOM.render(<GuGuDan />, document.querySelector('#root'));  //화면에다가 위에서 만든 것을 실제로 반영하겠다. 렌더링 하겠다.
+        </script>
+</body>
+
+</html>

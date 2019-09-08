@@ -23,7 +23,6 @@ function solution(record) {
             answer[k] = arr.filter((el)=>  el.id === arr[k].id)[0].name  + '님이 나갔습니다.';
         }
     }
-    console.log(answer);
     return answer;
 }
 

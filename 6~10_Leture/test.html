@@ -16,12 +16,11 @@
 
                 onSubmit = (e) => {
                     e.preventDefault();
-                    // 정답을 적으세요
-                    if(this.state.value === this.state.name) {
-                        this.setState({result: '정답'});                       
-                    } else {
-                        this.setState({result: '땡'}); 
-                    }
+                    this.setState({ result: this.state.name === this.state.value ? '천재' : '바보' });
+                }
+
+                abcd() {
+                    console.dir(this);
                 }
 
                 onChange = (e) => {
@@ -35,7 +34,7 @@
                             <div>스터디 팀장의 이름은?</div>    
                             <form onSubmit={this.onSubmit}>
                                 <input type="string" value={this.state.value} onChange={this.onChange} />
-                                <button>입력!</button>
+                                <button onClick={this.abcd}>입력!</button>
                             </form>
                             <div>{this.state.result}</div>
                         </React.Fragment>
