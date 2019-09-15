@@ -1,0 +1,26 @@
+{
+  "name": "numberbaseball",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-hot-loader": "^4.12.13",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.8.0",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --hot"
+  },
+  "author": "",
+  "license": "ISC"
+}
