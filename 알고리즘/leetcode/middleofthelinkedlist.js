@@ -44,6 +44,7 @@ var middleNode = function(head) {
             head = head.next;
         }
     }
+    
     let index = Math.floor( (headNum + tailNum -1) / 2);
 
     for(let i = index; i < tailNum; i++) {
