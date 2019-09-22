@@ -1,7 +1,6 @@
 {
   "name": "numberbaseball",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -22,5 +21,6 @@
     "dev": "webpack-dev-server --hot"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }

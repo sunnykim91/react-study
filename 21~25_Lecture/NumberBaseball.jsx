@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, createRef } from 'react';
 // import React, {Component} from 'react';
 import Try from './Try';
 
@@ -31,6 +31,7 @@ const NumberBaseball = () => {
             setValue('');
             setAnswer(getNumbers());
             setTries([]);
+            this.inputRef.current.focus();
         } else {  // 답이 틀렸다면
             const answerArray = value.split('').map((v) => parseInt(v));
             let strike = 0;
@@ -41,6 +42,7 @@ const NumberBaseball = () => {
                 setValue('');
                 setAnswer(getNumbers());
                 setTries([]);
+                this.inputRef.current.focus();
             } else {
                 for (let i = 0; i < 4; i+= 1) {
                     if (answerArray[i] === answer[i]) {
@@ -53,6 +55,7 @@ const NumberBaseball = () => {
                     return [...prevTries, {try: value, result: `${strike} 스트라이크, ${ball} 볼 입니다.`}]
                 });
                 setValue('');
+                this.inputRef.current.focus();
             }
         }
     }; 
@@ -63,11 +66,13 @@ const NumberBaseball = () => {
 
     };
 
+    inputRef = createRef();  // this.inputRef
+
     return (
         <>
             <h1>{result}</h1>
             <form onSubmit={onSubmitForm}>
-                <input maxLength={4} value={value} onChange={onChangeInput} />
+                <input ref={this.inputRef} maxLength={4} value={value} onChange={onChangeInput} />
             </form>
             <div>시도: {tries.length} </div>
             <ul>
