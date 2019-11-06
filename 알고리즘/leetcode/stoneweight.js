@@ -27,3 +27,13 @@ function stoneChange(arr){
 
 
 console.log(lastStoneWeight([2, 7, 4, 1, 8, 1]));  // 8 7 4 2 1 1
+
+const lastStoneWeight = function (stones) {
+  while (stones.length > 1) {
+    stones.sort((a, b) => b - a);
+
+    const remainStone = stones.shift() - stones.shift();
+    if (remainStone) stones.push(remainStone);
+  }
+  return stones[0] ? stones[0] : 0;
+};

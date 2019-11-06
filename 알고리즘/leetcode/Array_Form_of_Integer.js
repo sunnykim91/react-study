@@ -1,7 +1,6 @@
 var addToArrayForm = function (A, K) {
   let arr = '';
   let arr2 = '';
-  let tempArr = [];
   let resultNum = '';
   for (let i = 0; i < A.length; i++){
     arr += A[i];
@@ -18,6 +17,9 @@ var addToArrayForm = function (A, K) {
       arr2 += rTempArr[o];
     }
     resultNum = parseInt(arr2) + parseInt(K);
+    for (let i = 0; i < A.length; i++) {
+      arr += A[i];
+    }
   }
   console.log(resultNum);
   let resultArr = resultNum + '';
