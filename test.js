@@ -1,37 +1,8 @@
-function alphabet(str) {
-  const alphaArr = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z"
-  ];
-  let result = [];
-  for (el in alphaArr) {
-    result.push(str.indexOf(alphaArr[el]));
-  }
-  console.log(...result);
+function uniqueList(arr1, arr2) {
+  let mySet = new Set(arr1.concat(arr2));
+  return Array.from(mySet);
 }
 
-alphabet("baekjoon");
+console.log(uniqueList([1, 1, 2, 2], [2, 3, 4, 5]));
+console.log(uniqueList([1, 2], [3, 4, 5]));
+console.log(uniqueList([], [2, 2, 3, 4, 5]));
