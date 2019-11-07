@@ -92,6 +92,7 @@ const reducer = (state, action) => {
       const checked = [];
       let openedCount = 0;
       console.log(tableData.length, tableData[0].length);
+
       const checkAround = (row, cell) => {
         console.log(row, cell);
         if (row < 0 || row >= tableData.length || cell < 0 || cell >= tableData[0].length) {
@@ -120,20 +121,20 @@ const reducer = (state, action) => {
         if (count === 0) { // 주변칸 오픈
           if (row > -1) {
             const near = [];
-            if (row - 1 > -1) {
+            if (row - 1 > -1) {  // 제일 윗칸
               near.push([row -1, cell - 1]);
               near.push([row -1, cell]);
               near.push([row -1, cell + 1]);
             }
             near.push([row, cell - 1]);
             near.push([row, cell + 1]);
-            if (row + 1 < tableData.length) {
+            if (row + 1 < tableData.length) {  // 제일 아랫칸
               near.push([row + 1, cell - 1]);
               near.push([row + 1, cell]);
               near.push([row + 1, cell + 1]);
             }
             near.forEach((n) => {
-              if (tableData[n[0]][n[1]] !== CODE.OPENED) {
+              if (tableData[n[0]][n[1]] !== CODE.OPENED) {  // 주변칸이 닫혀있는경우에만.
                 checkAround(n[0], n[1]);
               }
             })
@@ -144,6 +145,7 @@ const reducer = (state, action) => {
         }
         tableData[row][cell] = count;
       };
+
       checkAround(action.row, action.cell);
       let halted = false;
       let result = '';
