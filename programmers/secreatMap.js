@@ -1,7 +1,6 @@
 function solution(n, arr1, arr2) {
     let answer=[];
     let tempArr=[];
-    let realAn=[];
     arr1 = arr1.map(el => el.toString(2));
     arr2 = arr2.map(el => el.toString(2));
 
@@ -30,29 +29,28 @@ function solution(n, arr1, arr2) {
     console.log(arr1);
     console.log(arr2);
 
+    let tempS = '';
     for(let i=0;i<arr1.length;i++){
       for(let j=0;j<arr2.length;j++){
-        tempArr.push(arr1[i][j] | arr2[i][j]);
+        tempS += arr1[i][j] | arr2[i][j];
       }
+      tempArr.push(tempS);
+      tempS = '';
     }
     console.log(tempArr);
-    for(let l=0;l<tempArr.length; l = l + n ){
-      answer.push(tempArr.slice(l,l+n));
-    }
-
-    answer= answer.map(a => a.map(b => b===1? b='#': b=' '));
+    
+    tempArr= tempArr.map(a => Array.from(a).map(b => b==='1'? '#': ' '));
     
     let temp = '';
-    for(let a=0;a<answer.length;a++){
-      for(let b=0;b<answer.length;b++) {
-        temp += answer[a][b];
+    for(let a=0;a<tempArr.length;a++){
+      for(let b=0;b<tempArr.length;b++) {
+        temp += tempArr[a][b];
       }
-      realAn.push(temp);
+      answer.push(temp);
       temp = '';
     }
-    console.log(realAn);
-    return realAn;
+    return answer;
 }
 
-// console.log(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]));
+console.log(solution(5, [9, 20, 28, 18, 11], [30, 1, 21, 17, 28]));
 console.log(solution(6, [46, 33, 33, 22, 31, 50], [27, 56, 19, 14, 14, 10]));
