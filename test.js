@@ -1,8 +1,29 @@
-function uniqueList(arr1, arr2) {
-  let mySet = new Set(arr1.concat(arr2));
-  return Array.from(mySet);
+function merge(leftA, rightA) {
+  let results = [],
+    leftIndex = 0,
+    rightIndex = 0;
+
+  while (leftIndex < leftA.length && rightIndex < rightA.length) {
+    if (leftA[leftIndex] < rightA[rightIndex]) {
+      results.push(leftA[leftIndex++]);
+    } else {
+      results.push(rightA[rightIndex++]);
+    }
+  }
+  let leftRemains = leftA.slice(leftIndex);
+  let rightRemains = rightA.slice(rightIndex);
+
+  return results.concat(leftRemains).concat(rightRemains);
 }
 
-console.log(uniqueList([1, 1, 2, 2], [2, 3, 4, 5]));
-console.log(uniqueList([1, 2], [3, 4, 5]));
-console.log(uniqueList([], [2, 2, 3, 4, 5]));
+function mergeSort(array) {
+  if (array.length < 2) {
+    return array;
+  }
+
+  let midpoint = Math.floor(array.length / 2),
+    leftArray = array.slice(0, midpoint),
+    rightArray = array.slice(midpoint);
+
+  return merge(mergeSort(leftArray), mergeSort(rightArray));
+}
