@@ -1,29 +1,22 @@
-function merge(leftA, rightA) {
-  let results = [],
-    leftIndex = 0,
-    rightIndex = 0;
+function cmp(a, b) {
+  return a - b;
+}
 
-  while (leftIndex < leftA.length && rightIndex < rightA.length) {
-    if (leftA[leftIndex] < rightA[rightIndex]) {
-      results.push(leftA[leftIndex++]);
-    } else {
-      results.push(rightA[rightIndex++]);
+function solution(A, B) {
+  var n = A.length;
+  var m = B.length;
+  A.sort(cmp);
+  B.sort(cmp);
+  var i = 0;
+  for (var k = 0; k < n; k++) {
+    while (i < m - 1 && B[i] < A[k]) {
+      i = i + 1;
+    }
+    if (A[k] == B[i]) {
+      return A[k];
     }
   }
-  let leftRemains = leftA.slice(leftIndex);
-  let rightRemains = rightA.slice(rightIndex);
-
-  return results.concat(leftRemains).concat(rightRemains);
+  return -1;
 }
 
-function mergeSort(array) {
-  if (array.length < 2) {
-    return array;
-  }
-
-  let midpoint = Math.floor(array.length / 2),
-    leftArray = array.slice(0, midpoint),
-    rightArray = array.slice(midpoint);
-
-  return merge(mergeSort(leftArray), mergeSort(rightArray));
-}
+console.log(solution([3, 3], [1, 1, 2, 3]));
